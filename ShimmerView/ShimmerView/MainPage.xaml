@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:shimmerview="clr-namespace:ShimmerView"
+             mc:Ignorable="d" 
+             x:Class="ShimmerView.MainPage">
+
+    <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20" Spacing="20">
+            <shimmerview:ShimmerLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <shimmerview:ShimmerLayout.ShimmerGrid>
+                    <Grid   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5" ColumnSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <shimmerview:ShimmerBoxView CornerRadius="50" Grid.Row="0" Grid.RowSpan="3"  Grid.Column="0"/>
+                        <shimmerview:ShimmerBoxView   Grid.Row="0"  Margin="0,0,20,0" Grid.Column="1"/>
+                        <shimmerview:ShimmerBoxView  Grid.Row="1"  Margin="0,0,5,0" Grid.Column="1"/>
+                        <shimmerview:ShimmerBoxView Grid.Row="2"  Margin="0,0,50,0" Grid.Column="1"/>
+                    </Grid>
+                </shimmerview:ShimmerLayout.ShimmerGrid>
+            </shimmerview:ShimmerLayout>
+            <shimmerview:ShimmerLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <shimmerview:ShimmerLayout.ShimmerGrid>
+                    <Grid   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5" ColumnSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <BoxView  CornerRadius="50" Grid.Row="0" Grid.RowSpan="3"  Grid.Column="0"/>
+                        <BoxView   Grid.Row="0"  Margin="0,0,20,0" Grid.Column="1"/>
+                        <BoxView  Grid.Row="1"  Margin="0,0,5,0" Grid.Column="1"/>
+                        <BoxView Grid.Row="2"  Margin="0,0,50,0" Grid.Column="1"/>
+                    </Grid>
+                </shimmerview:ShimmerLayout.ShimmerGrid>
+            </shimmerview:ShimmerLayout>
+            <shimmerview:ShimmerLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <shimmerview:ShimmerLayout.ShimmerGrid>
+                    <Grid   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5" ColumnSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <BoxView  CornerRadius="50" Grid.Row="0" Grid.RowSpan="3"  Grid.Column="0"/>
+                        <BoxView   Grid.Row="0"  Margin="0,0,20,0" Grid.Column="1"/>
+                        <BoxView  Grid.Row="1"  Margin="0,0,5,0" Grid.Column="1"/>
+                        <BoxView Grid.Row="2"  Margin="0,0,50,0" Grid.Column="1"/>
+                    </Grid>
+                </shimmerview:ShimmerLayout.ShimmerGrid>
+            </shimmerview:ShimmerLayout>
+            <shimmerview:ShimmerLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <shimmerview:ShimmerLayout.ShimmerGrid>
+                    <Grid   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5" ColumnSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <BoxView  CornerRadius="50" Grid.Row="0" Grid.RowSpan="3"  Grid.Column="0"/>
+                        <BoxView   Grid.Row="0"  Margin="0,0,20,0" Grid.Column="1"/>
+                        <BoxView  Grid.Row="1"  Margin="0,0,5,0" Grid.Column="1"/>
+                        <BoxView Grid.Row="2"  Margin="0,0,50,0" Grid.Column="1"/>
+                    </Grid>
+                </shimmerview:ShimmerLayout.ShimmerGrid>
+            </shimmerview:ShimmerLayout>
+        </StackLayout>
+    </ScrollView>
+
+
+</ContentPage>
