@@ -4,93 +4,91 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:shimmerview="clr-namespace:ShimmerView"
+             xmlns:cp="clr-namespace:Amporis.Xamarin.Forms.ColorPicker;assembly=Amporis.Xamarin.Forms.ColorPicker"
              mc:Ignorable="d" 
              x:Class="ShimmerView.MainPage">
 
-    <ScrollView>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20" Spacing="20">
-            <shimmerview:ShimmerLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                <shimmerview:ShimmerLayout.ShimmerGrid>
-                    <Grid   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5" ColumnSpacing="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="20">
+            <shimmerview:ShimmerLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="20"
+                                   WaveColor="{Binding Source={x:Reference waveColorPicker}, Path=Color}"  
+                                   BackgroundColor="{Binding Source={x:Reference backgroundColorPicker}, Path=Color}" 
+                                   Speed="{Binding Source={x:Reference speedSlider}, Path=Value}"
+                                   WaveAngle="{Binding Source={x:Reference waveAngleSlider}, Path=Value}"
+                                   WaveSize="{Binding Source={x:Reference waveSizeSlider}, Path=Value}">
+            <shimmerview:ShimmerLayout.ShimmerGrid>
+                <Grid   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5" ColumnSpacing="10" BackgroundColor="Red">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".2*"/>
+                        <ColumnDefinition Width=".8*"/>
+                    </Grid.ColumnDefinitions>
 
-                        <shimmerview:ShimmerBoxView CornerRadius="50" Grid.Row="0" Grid.RowSpan="3"  Grid.Column="0"/>
-                        <shimmerview:ShimmerBoxView   Grid.Row="0"  Margin="0,0,20,0" Grid.Column="1"/>
-                        <shimmerview:ShimmerBoxView  Grid.Row="1"  Margin="0,0,5,0" Grid.Column="1"/>
-                        <shimmerview:ShimmerBoxView Grid.Row="2"  Margin="0,0,50,0" Grid.Column="1"/>
-                    </Grid>
-                </shimmerview:ShimmerLayout.ShimmerGrid>
-            </shimmerview:ShimmerLayout>
-            <shimmerview:ShimmerLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                <shimmerview:ShimmerLayout.ShimmerGrid>
-                    <Grid   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5" ColumnSpacing="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                    <shimmerview:ShimmerCell CornerRadius="50" Grid.Row="0" Grid.RowSpan="4"  Grid.Column="0"/>
+                    <shimmerview:ShimmerCell   Grid.Row="0"  Margin="0,0,5,0" Grid.Column="1"/>
+                    <shimmerview:ShimmerCell  Grid.Row="1"  Margin="0,0,70,0" Grid.Column="1"/>
+                    <shimmerview:ShimmerCell Grid.Row="2"  Margin="0,0,50,0" Grid.Column="1"/>
+                    <shimmerview:ShimmerCell  Grid.Row="3"  Margin="0,0,30,0" Grid.Column="1"/>
+                </Grid>
+            </shimmerview:ShimmerLayout.ShimmerGrid>
+        </shimmerview:ShimmerLayout>
+        <Grid   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                        <BoxView  CornerRadius="50" Grid.Row="0" Grid.RowSpan="3"  Grid.Column="0"/>
-                        <BoxView   Grid.Row="0"  Margin="0,0,20,0" Grid.Column="1"/>
-                        <BoxView  Grid.Row="1"  Margin="0,0,5,0" Grid.Column="1"/>
-                        <BoxView Grid.Row="2"  Margin="0,0,50,0" Grid.Column="1"/>
-                    </Grid>
-                </shimmerview:ShimmerLayout.ShimmerGrid>
-            </shimmerview:ShimmerLayout>
-            <shimmerview:ShimmerLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                <shimmerview:ShimmerLayout.ShimmerGrid>
-                    <Grid   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5" ColumnSpacing="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                <BoxView BackgroundColor="Orange" CornerRadius="50" Grid.Row="0" Grid.RowSpan="4"  Grid.Column="0"/>
+                <BoxView BackgroundColor="Orange"   Grid.Row="0"  Margin="0,0,5,0" Grid.Column="1"/>
+                <BoxView BackgroundColor="Orange"  Grid.Row="1"  Margin="0,0,70,0" Grid.Column="1"/>
+                <BoxView BackgroundColor="Orange" Grid.Row="2"  Margin="0,0,50,0" Grid.Column="1"/>
+                <BoxView BackgroundColor="Orange"  Grid.Row="3"  Margin="0,0,30,0" Grid.Column="1"/>
+            </Grid>
 
-                        <BoxView  CornerRadius="50" Grid.Row="0" Grid.RowSpan="3"  Grid.Column="0"/>
-                        <BoxView   Grid.Row="0"  Margin="0,0,20,0" Grid.Column="1"/>
-                        <BoxView  Grid.Row="1"  Margin="0,0,5,0" Grid.Column="1"/>
-                        <BoxView Grid.Row="2"  Margin="0,0,50,0" Grid.Column="1"/>
-                    </Grid>
-                </shimmerview:ShimmerLayout.ShimmerGrid>
-            </shimmerview:ShimmerLayout>
-            <shimmerview:ShimmerLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                <shimmerview:ShimmerLayout.ShimmerGrid>
-                    <Grid   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5" ColumnSpacing="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+        <ScrollView>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="WhiteSmoke" Padding="20">
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Text="Wave Color : "/>
+                    <Label Text="{Binding Source={x:Reference waveColorPicker}, Path=Color}"/>
+                </StackLayout>
+                <cp:ColorPickerEntry x:Name="waveColorPicker" WidthRequest="150" HorizontalOptions="Start" Color="Gray"/>
 
-                        <BoxView  CornerRadius="50" Grid.Row="0" Grid.RowSpan="3"  Grid.Column="0"/>
-                        <BoxView   Grid.Row="0"  Margin="0,0,20,0" Grid.Column="1"/>
-                        <BoxView  Grid.Row="1"  Margin="0,0,5,0" Grid.Column="1"/>
-                        <BoxView Grid.Row="2"  Margin="0,0,50,0" Grid.Column="1"/>
-                    </Grid>
-                </shimmerview:ShimmerLayout.ShimmerGrid>
-            </shimmerview:ShimmerLayout>
-        </StackLayout>
-    </ScrollView>
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Text="Background Color : "/>
+                    <Label Text="{Binding Source={x:Reference backgroundColorPicker}, Path=Color}"/>
+                </StackLayout>
+                <cp:ColorPickerEntry x:Name="backgroundColorPicker" WidthRequest="150" HorizontalOptions="Start" Color="LightGray"/>
+
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Text="Speed : "/>
+                    <Label Text="{Binding Source={x:Reference speedSlider}, Path=Value}"/>
+                </StackLayout>
+                <Slider MaximumTrackColor="Red" MinimumTrackColor="Green" HorizontalOptions="FillAndExpand" x:Name="speedSlider" Maximum="10" Minimum="0.1" Value="1"/>
+
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Text="Wave Size : "/>
+                    <Label Text="{Binding Source={x:Reference waveSizeSlider}, Path=Value}"/>
+                </StackLayout>
+                <Slider MaximumTrackColor="Red" MinimumTrackColor="Green" HorizontalOptions="FillAndExpand" x:Name="waveSizeSlider" Maximum="1" Minimum="0" Value=".15"/>
+
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Text="Wave Angle : "/>
+                    <Label Text="{Binding Source={x:Reference waveAngleSlider}, Path=Value}"/>
+                </StackLayout>
+                <Slider MaximumTrackColor="Red" MinimumTrackColor="Green" HorizontalOptions="FillAndExpand" x:Name="waveAngleSlider" Maximum="365" Minimum="0" Value="45"/>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
 
 
 </ContentPage>

@@ -12,13 +12,85 @@ namespace ShimmerView
 {
     public class ShimmerLayout : ContentView
     {
-        public bool _animationRunning;
-        public float WaveSize { get; set; } = .15f;
-        public float Speed { get; set; } = 1f;
-        public SKColor WaveColor { get; set; } = SKColors.Gray;
-        public SKColor RestColor { get; set; } = SKColors.LightGray;
+        #region WaveColor
+        public Color WaveColor
+        {
+            get { return (Color)GetValue(WaveColorProperty); }
+            set { SetValue(WaveColorProperty, value); }
+        }
+        private static void WaveColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is ShimmerLayout shimmerLayout)
+            {
+              //  shimmerLayout.WaveColor = (Color)newValue;
+            }
+        }
+        public static readonly BindableProperty WaveColorProperty = BindableProperty.Create(nameof(WaveColor), typeof(Color), typeof(ShimmerLayout), Color.Gray, BindingMode.Default, null, WaveColorChanged);
+        #endregion
 
-        private float _wavePosition = 0f;
+        #region BackgroundColor
+        public new Color BackgroundColor
+        {
+            get { return (Color)GetValue(BackgroundColorProperty); }
+            set { SetValue(BackgroundColorProperty, value); }
+        }
+        private static void BackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is ShimmerLayout shimmerLayout)
+            {
+               // shimmerLayout.BackgroundColor = (Color)newValue;
+            }
+        }
+        public static new readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(ShimmerLayout), Color.LightGray, BindingMode.Default, null, BackgroundColorChanged);
+        #endregion
+
+        #region WaveSize
+        public float WaveSize
+        {
+            get { return (float)GetValue(WaveSizeProperty); }
+            set { SetValue(WaveSizeProperty, value); }
+        }
+        private static void WaveSizeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is ShimmerLayout shimmerLayout)
+            {
+               // shimmerLayout.WaveSize = (float)newValue;
+            }
+        }
+        public static readonly BindableProperty WaveSizeProperty = BindableProperty.Create(nameof(WaveSize), typeof(float), typeof(ShimmerLayout), .15f, BindingMode.Default, null, WaveSizeChanged);
+        #endregion
+
+        #region Speed
+        public float Speed
+        {
+            get { return (float)GetValue(SpeedProperty); }
+            set { SetValue(SpeedProperty, value); }
+        }
+        private static void SpeedChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is ShimmerLayout shimmerLayout)
+            {
+                //shimmerLayout.Speed = (float)newValue;
+            }
+        }
+        public static readonly BindableProperty SpeedProperty = BindableProperty.Create(nameof(Speed), typeof(float), typeof(ShimmerLayout), 1f, BindingMode.Default, null, SpeedChanged);
+        #endregion
+
+        #region WaveAngle
+        public int WaveAngle
+        {
+            get { return (int)GetValue(WaveAngleProperty); }
+            set { SetValue(WaveAngleProperty, value); }
+        }
+        private static void WaveAngleChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is ShimmerLayout shimmerLayout)
+            {
+               // shimmerLayout.WaveAngle = (int)newValue;
+            }
+        }
+        public static readonly BindableProperty WaveAngleProperty = BindableProperty.Create(nameof(WaveAngle), typeof(int), typeof(ShimmerLayout), 45, BindingMode.Default, null, WaveAngleChanged);
+        #endregion
 
         private Grid _shimmerGrid;
         public Grid ShimmerGrid
@@ -31,7 +103,8 @@ namespace ShimmerView
             }
         }
 
-
+        public bool _animationRunning;
+        private float _wavePosition = 0f;
         private SKCanvasView _canvas;
         private AbsoluteLayout _absoluteLayout;
         private ContentView _gridContainer;
@@ -42,7 +115,7 @@ namespace ShimmerView
             _absoluteLayout = new AbsoluteLayout() { HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand };
             Content = _absoluteLayout;
 
-            _absoluteLayout.Children.Add(_gridContainer, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
+            _absoluteLayout.Children.Add(_gridContainer, new Rectangle(0, 0, 1,1), AbsoluteLayoutFlags.All);
 
             _canvas = new SKCanvasView()
             {
@@ -62,11 +135,10 @@ namespace ShimmerView
             SKSurface surface = e.Surface;
             SKCanvas canvas = surface.Canvas;
 
-            double angle = 45;
             float startPosX = 0f;
             float startPosY = 0f;
             float endPosX = info.Width;
-            float endPosY = (float)Math.Tan(angle) * endPosX;
+            float endPosY = (float)Math.Tan(WaveAngle) * endPosX;
 
             canvas.Clear();
 
@@ -85,7 +157,7 @@ namespace ShimmerView
                 paint.Shader = SKShader.CreateLinearGradient(
                                     new SKPoint(startPosX, startPosY),
                                     new SKPoint(endPosX, endPosY),
-                                    new SKColor[] { RestColor, WaveColor, RestColor },
+                                    new SKColor[] { BackgroundColor.ToSKColor(), WaveColor.ToSKColor(), BackgroundColor.ToSKColor() },
                                     new float[] { leftPosition, _wavePosition, rightPosition },
                                     SKShaderTileMode.Clamp);
 
@@ -96,29 +168,19 @@ namespace ShimmerView
                 var childPath = new SKPath();
                 foreach (var childView in ShimmerGrid.Children)
                 {
-                    if (childView is ShimmerBoxView theView)
+                    if (childView is ShimmerCell theView)
                     {
                         AddViewPath(ref childPath, theView);
-                    }
-                    else
-                    {
-
                     }
                 }
 
                 canvas.ClipPath(childPath);
 
-                // canvas.ClipPath(keyholePath);
-
-                // Set transform to center and enlarge clip path to window height
-                //SKRect bounds;
-                //keyholePath.GetTightBounds(out bounds);
-
                 canvas.DrawPath(mainPath, paint);
             }
         }
 
-        private void AddViewPath(ref SKPath pathToAddTo, ShimmerBoxView theView)
+        private void AddViewPath(ref SKPath pathToAddTo, ShimmerCell theView)
         {
             pathToAddTo.AddRoundRect(theView.Bounds.ToSKRect(), (float)theView.CornerRadius.TopLeft, (float)theView.CornerRadius.TopRight, SKPathDirection.CounterClockwise);
         }
@@ -128,7 +190,7 @@ namespace ShimmerView
             _animationRunning = true;
             Device.StartTimer(TimeSpan.FromMilliseconds(20), () =>
             {
-                if (_wavePosition > 1.2f)
+                if (_wavePosition > 1f)
                 {
                     _wavePosition = -0.2f;
                 }
@@ -145,9 +207,5 @@ namespace ShimmerView
         {
             _animationRunning = false;
         }
-
-        SKPath keyholePath = SKPath.ParseSvgPathData(
-            "M 300 130 L 250 350 L 450 350 L 400 130 A 70 70 0 1 0 300 130 Z");
-
     }
 }

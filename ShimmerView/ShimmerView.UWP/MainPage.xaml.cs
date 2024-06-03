@@ -21,7 +21,7 @@ namespace ShimmerView.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new ShimmerView.App());
+            LoadApplication(new global::ShimmerView.App());
         }
     }
 }
